@@ -1,6 +1,7 @@
 import { vipArr } from "./vipJson.js";
+//empty array
 let theRichest = [];
-
+//prepair constuctor for craeting classes  vipArr data
 class richs {
   constructor(flag=0, name, worth, birth_year, source, country, image) {
     this.flag = flag;
@@ -11,7 +12,7 @@ class richs {
     this.country = country;
     this.image = image;
   }
-
+//printing method inside the prototype class
   printData() {
     document.getElementById("screen").innerHTML += `
       <div class ="rich-div">
@@ -25,6 +26,7 @@ class richs {
       `;
   }
 }
+// loop for pushing the classes inside the new array
 for (let man of vipArr) {
   let rich = new richs(
     man.flag,
@@ -39,24 +41,32 @@ for (let man of vipArr) {
 }
 
 console.log(theRichest);
-
+//button for present the data inside the html
 let myBtn = document.getElementById("btn");
 myBtn.addEventListener("click", () => {
   document.getElementById("screen").innerHTML = " ";
   theRichest.map((rich) => {
     rich.printData();
   });
-
+  // add to each div the same className, also giving anumber (index)
   let richDivs = document.querySelectorAll(".rich-div");
   richDivs.forEach((singleDiv, index) => {
     
+    //Adds to each item an option to change with each click( every div will become abutton)
     singleDiv.addEventListener("click", (evt) => {
+      //every click, the class will turn his flag to = 1, instead of 0.
       theRichest[index].flag = 1;
+      //with this filter all classes with flag 0 , will be drop out from the array
       let newRiches = theRichest.filter((richFlag) => richFlag.flag < 1);
       console.log(newRiches);
-
+      // with display none, the dropped class also will disapear from the page.
+      
       singleDiv.style.display = "none" 
       
+
+      //i tried to do the same with map, but it goes bug. --> for trying disable the "singleDiv.style.display = "none" 
+      // and able the code below
+
       // document.getElementById("screen").innerHTML = "";
       // newRiches.map((rich)=>{
       //   rich.printData()
