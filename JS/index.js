@@ -21,7 +21,6 @@ class richs {
       <p>source: ${this.source},</p>
       <p>country: ${this.country},</p>
       <p><img src="${this.image}" alt="${this.name}">,</p>
-      <p>flag: ${this.flag},</p>
       </div>
       `;
   }
@@ -52,17 +51,19 @@ myBtn.addEventListener("click", () => {
   richDivs.forEach((singleDiv, index) => {
     
     singleDiv.addEventListener("click", (evt) => {
-      // let item = evt.target;
       theRichest[index].flag = 1;
-      let newRichest = theRichest.filter((richFlag) => richFlag.flag < 1);
-      console.log(newRichest);
+      let newRiches = theRichest.filter((richFlag) => richFlag.flag < 1);
+      console.log(newRiches);
 
+      singleDiv.style.display = "none" 
       
-      document.getElementById("screen").innerHTML = "";
-      newRichest.map((rich) => {
-        rich.printData();
-        
-      });
+      // document.getElementById("screen").innerHTML = "";
+      // newRiches.map((rich)=>{
+      //   rich.printData()
+
+      // })
+
+  
 
     });
   });
